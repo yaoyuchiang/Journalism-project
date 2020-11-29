@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>What’s Behind the New Wave of Podcasts in Taiwan?</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+        body {
+            margin: 0px;
+            background-color: #F6F6F6;
+        }
+
+        .main {
+            position: relative;
+        }
+
+        div.up {
+            display: flex;
+            background-image: url('./background.jpg');
+            width: 100wh;
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+
+        .up h1 {
+            display: flex;
+            font-size: 45px;
+            font-weight: 600;
+            color: white;
+            font-family: 'roboto', sans-serif;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            box-sizing: border-box;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+
+
+
+        .up h2 {
+            font-size: 26px;
+            font-weight: 600;
+            margin: auto;
+            color: white;
+            font-family: 'roboto', sans-serif;
+            text-align: center;
+            top: 340px;
+            left: 73px;
+            position: absolute;
+            box-sizing: border-box;
+
+        }
+
+        .up h3 {
+            font-size: 12px;
+            color: white;
+            font-family: 'roboto', sans-serif;
+            text-align: right;
+            left: 200px;
+            top: 500px;
+            width: 1000px;
+            margin: 0 0;
+            position: absolute;
+            box-sizing: border-box;
+        }
+
+        .intro {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            width: 60%;
+            margin: auto;
+
+
+        }
+
+        .intro p {
+            font-family: 'georgia', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            font-style: italic;
+            text-align: left;
+            color: #8D8D8D;
+
+
+
+        }
+
+        .down {
+            position: absolute;
+            display: flex;
+            height: 600px;
+            width: 100%;
+        }
+
+        #para {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 60%;
+            margin: auto;
+        }
+
+        #para p {
+            text-align: left;
+            font-family: 'georgia', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+
+
+        }
+
+        #para h2 {
+            text-align: left;
+            font-family: 'georgia', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+
+        }
+
+        .img1 {
+            height: 300px;
+            /*can be anything*/
+            width: 320px;
+            /*can be anything*/
+            position: relative;
+        }
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        figcaption {
+            text-align: left;
+            font-family: 'georgia', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            font-style: italic;
+            color: #8D8D8D;
+        }
+
+
+        #chart {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 60%;
+            margin: auto;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: auto;
+        }
+
+        .axis text {
+            font-size: 11px;
+            fill: #8D8D8D;
+        }
+
+        #chart1_tooltip {
+            font-family: 'Lato', sans-serif;
+            font-size: 12px;
+            position: absolute;
+            background: white;
+            text-align: left;
+            width: auto;
+            height: auto;
+            padding: 0px 5px;
+            color: #282828;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3)
+        }
+
+        #chart1_tooltip.hidden {
+            display: none;
+        }
+
+        /*chart2*/
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: auto;
+        }
+
+        .axis text {
+            font-size: 11px;
+            fill: #8D8D8D;
+        }
+
+        /*chart3*/
+
+        #chart3_tooltip {
+            font-family: 'Lato', sans-serif;
+            font-size: 12px;
+            position: absolute;
+            background: white;
+            text-align: left;
+            width: auto;
+            height: auto;
+            padding: 0px 5px;
+            color: #282828;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3)
+        }
+
+        #chart3_tooltip.hidden {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="up">
+            <h1>
+                What’s Behind the New Wave of Podcasts in Taiwan?
+            </h1>
+            <div class="color1">
+            </div>
+            <h2>
+                Reported / designed by Yao-Yu Chiang
+            </h2>
+            <h3>
+                Photograph by Maurice Tsai
+            </h3>
+        </div>
+        <div class="intro">
+            <p>
+                In the first half of 2020, podcasts have skyrocketed in popularity among the general public in Taiwan. As listeners, creators, and advertisers sprang up like mushrooms, what are the factors behind this new trend? If we look to the west, what hints can we find for the future of Taiwan's podcast industry?
+            </p>
+        </div>
+        <div id="para" class="para1">
+
+            <p>
+                "It's obvious that we're seeing explosive growth in Taiwan's podcast market starting this year," said Michael Chou, founder of the digital media company Daodu Tech. In the past three months, he has seen a 20 percent increase in subscribers through the company's podcast, which was launched in 2017.
+                <br><br>
+                "People used to tell me that they had read the articles from Dadou Tech, but now they are telling me they have listened to the latest podcasts from Dadou Tech," Zhou jokingly said.
+                <br><br>
+                Figures have suggested that 2020 is a significant year for Taiwan's podcast industry. According to market research conducted by podcast production company SoundOn, there were 277 new podcasts in Taiwan in 2019. That number has tripled to 882 just 6 months after entering 2020.
+                <br><br>
+                <br><br>
+            </p>
+
+        </div>
+
+        <div id="chart" class="chart1">
+            <div id="chart1_tooltip" class="hidden">
+                
+                <p id="pnumber">tooltip</p>
+            </div>
+
+            <svg width="750" height="400">
+
+            </svg>
+
+        </div>
+
+        <div id="para" class="para2">
+
+            <p>
+                As more and more content creators and audience jump on this podcast bandwagon, advertisers have also seen the business opportunities hidden in the headphones. Popular podcasts "Gooaye" and "Bailingguo" have pointed out that their advertising price had skyrocketed as much as 20 times from March to June.
+                <br><br>
+                However, Chou was not surprised by the popularity of this new type of medium. He said that Facebook, Google, and YouTube have already walked through the same development process that lies ahead for podcasts.
+                <br><br>
+                "These media platforms share a similar pattern as they go from launch to profitability. At first, the demand would exceed supply, attracting more content creators and users to join the market. Then the advertisers come in, and the growingly vigorous competitions will eventually turn the market into a red ocean," said Chou.
+                <br><br>
+                Indeed, we have all seen the success stories of different media platforms before. However, the rise of podcasts is significant in its own way -- it suggests that people are beginning to seize new business opportunities from our "secondary attention."
+                <br><br>
+            </p>
+            <h2>
+                How the media compete to monetize our attention
+            </h2>
+            <figure class="img1">
+                <img src="img-1592310282-24461@900.jpg">
+                <figcaption>
+                    As one of the earliest podcasters in Taiwan, Michael Chou believes its decentrilized characteristic will invite big name companies to try to integrate and monopolize the market.
+                </figcaption>
+            </figure>
+            <p>
+                "The major media platforms you see today are really about just one thing: how to monetize your attention," said Chou.
+                In the limited time we have in a day, Netflix takes up an hour or two; YouTube steals 20 or 30 minutes of our time; Facebook and Instagram divide up the rest of our fragmented time; even for moments as short as 15 seconds, there is Tiktok trying to grab your attention.
+                <br><br>
+                At a time when the "attention blocks" of varying lengths of time are being carved up by different media platforms, the battlefield has been shifted toward "secondary attention," eyeing on activities such as jogging, working out, and driving that don't require your full concentration. Podcasts serve as a great medium that caters to these scenarios just right.
+                <br><br>
+                "People have a limited amount of attention within a day, but we keep finding new ways through technology to cut out smaller markets to drain every bit of your attention. I'm guessing that people would continue to subdivide new markets in the future. After all, as human beings, we are always afraid of being bored," said Chou.
+                <br><br>
+                However, it's important to note that the size of the market depends on the amount of attention. Given this circumstance, how the relatively fragmented and scattered podcast market can form a more efficient business model will be a major issue for future podcasters.
+                <br><br>
+                If we look to the west, Spotify, the Swedish music streaming giant, has already been answering this question. It has been doubling down on investing in its podcast business, churning up the once stagnant industry.
+                <br><br>
+            </p>
+            <h2>
+                Podcasts in America: an undermonetized market
+            </h2>
+            <p>
+                Before heading into the discussion of Spotify's strategy, it might help take a look at the U.S., where the more mature podcast industry can give us an inkling of what we might encounter down the road.
+                <br><br>
+                According to the newest 2020 report from the market research company Edison Research, 37% of Americans over age 12 (approximately 104 million people) listen to podcasts monthly, up from 32% in 2019. The number of monthly listeners had nearly doubled since 2012 when the Apple Podcasts application was launched.
+                <br><br>
+                More surprisingly, according to a 2019 study conducted by two research companies, Nielsen and Edison Research, podcast advertising revenue in the U.S. has jumped from $70 million in 2015 to $510 million in 2019 and is expected to reach $660 million this year. This is equivalent to a 10-fold increase in 5 years.
+                <br><br>
+                However, even though the American podcast market has a large audience, growing advertisements, and high-quality content, the value that podcasts can bring to the market is still greatly underestimated.
+                <br><br>
+                According to TechCrunch, compared to various media forms such as TV, magazines, and newspapers, podcast advertisements earn only $0.01 per hour from its active users. It's much lower than $0.27 for online Internet advertisements and $0.77 for newspapers.
+                <br><br>
+                <br><br>
+            </p>
+
+        </div>
+
+        <div id="chart" class="chart2">
+
+            <svg width="750" height="400">
+            </svg>
+
+        </div>
+
+        <div id="para" class="para3">
+            <p>
+                Why is podcasts' profitability undervalued? One of the main reasons is that podcasts do not have a dominant distribution platform that helps match advertisers and content creators. Apple Podcasts, which is the biggest podcast platform, does not have an advertisement marketplace.
+                <br><br>
+                "Apple is not incentivized to monetize podcasts because its main revenue comes from selling hardware. Apple Podcasts is more like an extra service I give you when you buy a phone," said Chou.
+                <br><br>
+                There are pros and cons to Apple being a passive market leader. The upside is that it doesn't prohibit contents from being available only on Apple Podcasts, so the creators are not entirely subject to the platform's policies and algorithms. The downside is that advertisers have to go to podcasters one by one, which slows down the podcast advertising market's development and makes less-popular podcasts difficult to generate revenue.
+                <br><br>
+                Having noticed the pain point, Spotify has been making significant investments into podcasting since early 2019 to challenge Apple Podcasts and move towards becoming a Podcast one-stop-shop.
+                <br><br>
+                <h2>
+                    Spotify: the aspiring challenger
+                </h2>
+                <p>
+                    Being a music streaming company, Spotify has more reasons than Apple to take over the podcast market. Paying high royalties to the record companies has resulted in its declining net profit margins over the past few years. As podcasts become more and more popular, users may also tune in for podcasts rather than listening to music.
+                    <br><br>
+                    Spotify had invested more than $400 million to acquire several major podcast companies, including Gimlet, Parcast, and Anchor. These companies laid the foundation for Spotify's capabilities in producing its own podcasts and matchmaking creators and advertisers. The company also signed exclusive deals with Joe Rogan, Kim Kardashian West, and Michelle Obama, attracting podcast fans to its platform.
+                    <br><br>
+                    According to Spotify's financial reports, after starting to invest in podcasts in the first half of 2019, its monthly active podcast users have doubled from 347,200 in Q3 2019 to 704,000 in Q3 2020. Meanwhile, a poll conducted by global research firm eMarketer earlier this year found that Spotify has surpassed Apple Podcasts as the most used podcast platform in the U.S.
+                    <br><br>
+                    <br><br>
+
+                </p>
+        </div>
+
+        <div id="chart" class="chart3">
+            <div id="chart3_tooltip" class="hidden">
+                <p><strong id="people">Hello</strong></p>
+                <p id="spotifyPercent">tooltip</p>
+            </div>
+            <svg width="750" height="400">
+            </svg>
+
+        </div>
+
+        <div id="para" class="para4">
+
+            <p>
+                Spotify is now the biggest podcast company that produces its own podcasts, sells advertisements, and provides its own streaming platform all at the same time. With Spotify poised to become the dominant integrated platform for podcasts, Apple is gradually changing its strategic mindset towards the Podcast market. According to Bloomberg, Apple Podcasts is currently planning to partner with Apple TV + to start creating its original podcasts as well.
+            </p>
+
+            <h2>
+                As Taiwan's podcast market takes off, is the era of "sound economy" coming?
+            </h2>
+            <figure class="img1">
+                <img src="img-1592106852-16753@900.jpg">
+                <figcaption>
+                    In "Bailingguo," the host Kylie Wang discusses international news in a stand-up comedy fashion. It is now among the top 3 most popular podcasts in Taiwan.
+                </figcaption>
+            </figure>
+            <p>
+                Spotify has shaken up the U.S. podcast industry. If we look back to Taiwan, we can see that although the two markets are hardly comparable in size, local companies with the ambition to integrate the entire podcast market have also emerged.
+                <br><br>
+                In May last year, SoundOn, a podcast company providing hosting systems, streaming platforms, self-produced podcasts, and advertising agency services, was officially founded. Throughout their year-long preparation, they invited several celebrities to produce their own podcasts, launched the first local Mandarin hosting system, and introduced podcasts to potential advertisers from banks to retail chains.
+                <br><br>
+                These acts had helped attract more Taiwanese people's attention to this relatively unfamiliar medium and lowered the entry barrier for new podcasters with the Mandarin hosting system. Meanwhile, as COVID-19 forced people to stay at home since late January, many of them viewed it as a chance to make their own podcasts.
+                <br><br>
+                Cheng Seng Group, Taiwan's largest recording equipment distributor, said that the monthly podcast-related equipment sales had increased 10 times year-on-year in February. Google Trend statistics also showed that searches for the keyword "podcast" in Taiwan went up by about 50% from February to June. Popular podcasts such as "Gooaye" and "Bailingguo" became the new talk of the town, and advertisers have been pouring into this new field.
+                <br><br>
+                "We had zero advertising revenue last year," said Kylie Wang, the host of Bailingguo, "but this year has been phenomenal. We now make more than $1 million NTD every month."
+                <br><br>
+                "We're still about three to five years away from having a mature podcast market like the U.S.," said Likai Gu, founder of SoundOn, "but after this explosive growth, I think we'll catch up with them very quickly."
+                <br><br>
+                Interestingly, while Taiwan's podcast market is blooming, what Michael Chou sees is a starting point for a broader "sound economy."
+                <br><br>
+                "I think the sound is a more primitive form of communication. People are born to listen to sounds, not to read words," said Chou, "sounds are very intuitive. People tend to move towards a direction that's both convenient and intuitive. In the long run, we might see many things shift into a sound-based interface."
+                <br><br>
+                Except for podcasts, innovative applications incorporating sounds have been taking form. In China, the app Zhihu Live offers a voice-based interaction service that allows people to pay and ask a question, and an expert will answer directly to you through voice messages. Voice assistants like Google Home and Alexa have also underlined the increasing importance of voice in future technological development.
+                <br><br>
+                "We love listening to other people speaking. It's so much easier to absorb than texts," said Chou. At a time when we always fixate our eyes on various kinds of screens, maybe the podcast trend will lead us to another digital world that's dominated by sounds. As we grow to rely more on our ears, we might finally give our eyes a break – a break that is long overdue.
+
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <script>
+        //chart1 
+
+        var dataSet1 = [{
+                x: "2010",
+                y: 5
+            }, {
+                x: "2011",
+                y: 6
+            },
+            {
+                x: "2012",
+                y: 2
+            }, {
+                x: "2013",
+                y: 10
+            },
+            {
+                x: "2014",
+                y: 9
+            }, {
+                x: "2015",
+                y: 11
+            },
+            {
+                x: "2016",
+                y: 17
+            }, {
+                x: "2017",
+                y: 28
+            },
+            {
+                x: "2018",
+                y: 79
+            }, {
+                x: "2019",
+                y: 277
+            }, {
+                x: "2020",
+                y: 882
+            }
+        ]
+
+        var padding = 100
+        var width = 750
+        var height = 400
+
+
+        //加上標題
+        d3.select("div.chart1").select("svg")
+            .append("text")
+            .style({
+                "font-size": 20,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 800
+            })
+            .text("The Podcast Mania")
+            .attr({
+                x: 190,
+                y: 25
+            })
+
+        d3.select("div.chart1").select("svg")
+            .append("text")
+            .style({
+                "font-size": 13,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 400
+            })
+            .text("Numbers of new podcasts in Taiwan have skyrocketed from 2019 to 2020")
+            .attr({
+                x: 190,
+                y: 45
+            })
+
+        d3.select("div.chart1").select("svg")
+            .append("text")
+            .style({
+                "font-size": 10,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 400
+            })
+            .text("Source: SoundOn")
+            .attr({
+                x: 190,
+                y: height - padding / 2
+            })
+
+
+        //畫出x軸、y軸
+
+
+        var parseYear = d3.time.format("%Y").parse
+
+
+        var strX = d3.min(dataSet1, function(d) {
+            return d.x
+        })
+        var strY = d3.max(dataSet1, function(d) {
+            return d.x
+        })
+
+
+
+        var xScale = d3.time.scale()
+            .domain([parseYear(strX), parseYear(strY)])
+            .range([padding * 2, width - padding * 2])
+
+        var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient("bottom")
+            .ticks(9)
+
+
+        d3.select("div.chart1").select("svg")
+            .append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+            .call(xAxis);
+
+        var yScale = d3.scale.linear()
+            .domain([0, 1000])
+            .range([height - padding, padding])
+
+        var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient("left")
+            .ticks(5);
+
+        d3.select("div.chart1").select("svg")
+            .append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + padding * 2 + "," + 0 + ")")
+            .call(yAxis)
+            .append("text")
+            .text("number of podcasts")
+            .attr("transform", "translate(" + (-padding - 5) + "," + (padding - 15) + ")")
+
+
+        //畫出折線
+
+        var line = d3.svg.line()
+            .x(function(d) {
+                return xScale(parseYear(d.x))
+            })
+            .y(function(d) {
+                return yScale(d.y)
+            })
+            .interpolate("monotone")
+
+
+        d3.select("div.chart1").select("svg")
+            .append("path")
+            .attr({
+                d: line(dataSet1),
+                fill: "transparent",
+                stroke: "#4F767D",
+                "stroke-width": 3
+            })
+
+
+        //加上圓圈
+
+        d3.select("div.chart1").select("svg").selectAll('circle')
+            .data(dataSet1)
+            .enter()
+            .append('circle')
+            .attr('cx', function(d) {
+                return xScale(parseYear(d.x))
+            })
+            .attr('cy', function(d) {
+                return yScale(d.y)
+            })
+            .attr('r', 4)
+            .attr('fill', "#FF99AD")
+
+            //加上tooltip
+            .on("mouseover", function(d) {
+                var chart1_tooltip = d3.select("#chart1_tooltip")
+                    .style({
+                        left: (d3.mouse(this)[0] + 5) + "px",
+                        top: (d3.mouse(this)[1] - 10) + "px"
+
+                    })
+
+                //chart1_tooltip.select("#year").text(d.x)
+                chart1_tooltip.select("#pnumber").text(d.y + " new podcasts").style({
+                    "font-weight": 900
+                })
+
+
+
+
+                d3.select("#chart1_tooltip").classed("hidden", false).on("mouseout", function(d) {
+                    d3.select("#chart1_tooltip").classed("hidden", true)
+                })
+
+            })
+
+        //Chart2
+
+        var dataSet2 = [{
+                w: 0,
+                x: "Podcasts",
+                y: 0.01,
+                z: 25
+            },
+            {
+                w: 1,
+                x: "Radio",
+                y: 0.11,
+                z: 3
+            },
+            {
+                w: 2,
+                x: "TV",
+                y: 0.13,
+                z: 2
+            },
+            {
+                w: 3,
+                x: "Social media",
+                y: 0.27,
+                z: 12
+
+            },
+            {
+                w: 4,
+                x: "Newspapers",
+                y: 0.77,
+                z: 6
+            }
+        ]
+
+        //標題
+
+        d3.select("div.chart2").select("svg")
+            .append("text")
+            .style({
+                "font-size": 20,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 800
+            })
+            .text("The Undermonetized Podcast Market")
+            .attr({
+                x: 140,
+                y: 25
+            })
+
+        d3.select("div.chart2").select("svg")
+            .append("text")
+            .style({
+                "font-size": 13,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 400
+            })
+            .text("Ad revenues of podcasts grow fast, but still largely undervalued compared to other media")
+            .attr({
+                x: 140,
+                y: 45
+            })
+
+        d3.select("div.chart2").select("svg")
+            .append("text")
+            .style({
+                "font-size": 10,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 400
+            })
+            .text("Source: Nielsen, IAB and Edison")
+            .attr({
+                x: 42,
+                y: height - padding / 3.5
+            })
+
+
+        //做出兩軸
+
+        var xScale = d3.scale.linear()
+            .domain([0, 0.8])
+            .range([width / 2 + 30, width - padding / 2])
+
+        var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient("bottom")
+            .ticks(9)
+
+
+        d3.select("div.chart2").select("svg")
+            .append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+            .call(xAxis)
+            .append("text")
+            .text("revenue per active user per hour (1/USD)")
+            .attr("transform", "translate(" + (width - padding * 2) + "," + (padding - 60) + ")")
+
+
+        var xScale2 = d3.scale.linear()
+            .domain([0, 30])
+            .range([width / 2 - 30, width / 2 - (width / 2 - (padding / 2))])
+
+        var xAxis2 = d3.svg.axis()
+            .scale(xScale2)
+            .orient("bottom")
+            .ticks(7)
+
+
+        d3.select("div.chart2").select("svg")
+            .append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+            .call(xAxis2)
+            .append("text")
+            .text("(%) growth of revenue per active user per hour compared to 2018")
+            .attr("transform", "translate(" + 42 + "," + (padding - 60) + ")");
+
+        //項目名稱
+
+        var category = d3.select("div.chart2").select("svg").append('g')
+            .attr({
+                'id': 'category'
+            });
+
+        category.selectAll('text')
+            .data(dataSet2)
+            .enter()
+            .append('text')
+            .attr({
+                'fill': 'black',
+                'x': function(d) {
+                    if (d.w == 0) {
+                        return width / 2 - 21
+                    } else if (d.w == 1) {
+                        return width / 2 - 14
+                    } else if (d.w == 2) {
+                        return width / 2 - 7
+                    } else {
+                        return width / 2 - 27
+                    }
+                },
+                'y': function(d) {
+                    return padding + 40 * d.w + 8;
+                }
+            }).text(function(d) {
+                return d.x;
+            }).style({
+                'font-size': '9px',
+                "font-family": "arial",
+                "font-weight": 600
+            });
+
+
+
+
+
+        //畫出柱狀圖
+
+
+
+        var rect = d3.select("div.chart2").select("svg").append('g')
+            .attr({
+                'id': 'rect'
+            });
+        var rect2 = d3.select("div.chart2").select("svg").append('g')
+            .attr({
+                'id': 'rect2'
+            });
+        var num = d3.select("div.chart2").select("svg").append('g')
+            .attr({
+                'id': 'num'
+            });
+        var num2 = d3.select("div.chart2").select("svg").append('g')
+            .attr({
+                'id': 'num2'
+            });
+
+
+        rect.selectAll('rect')
+            .data(dataSet2)
+            .enter()
+            .append('rect')
+            .attr({
+                'width': function(d) {
+                    return xScale(d.y) - (width / 2 + 30);
+                },
+                'height': 10,
+                'fill': "#4F767D",
+                'x': width / 2 + 30,
+                'y': function(d) {
+                    return padding + 40 * d.w;
+                }
+            });
+
+        rect2.selectAll('rect')
+            .data(dataSet2)
+            .enter()
+            .append('rect')
+            .attr({
+                'width': function(d) {
+                    return -(xScale2(d.z) - (width / 2 - 30));
+                },
+                'height': 10,
+                'fill': "#FF99AD",
+                'x': function(d) {
+                    return xScale2(d.z)
+                },
+                'y': function(d) {
+                    return (padding + 40 * d.w);
+                }
+            })
+
+
+
+        //加上末端數字
+
+        num.selectAll('text')
+            .data(dataSet2)
+            .enter()
+            .append('text')
+            .attr({
+                'fill': '#4F767D',
+                'x': function(d) {
+                    return (width / 2 + 30 + (xScale(d.y) - (width / 2 + 30))) + 3
+                },
+                'y': function(d) {
+                    return padding + 40 * d.w + 8;
+                }
+            }).text(function(d) {
+                return d.y + "USD";
+            }).style({
+                'font-size': '10px',
+                "font-family": "arial",
+                "font-weight": 600
+            });
+
+        num2.selectAll('text')
+            .data(dataSet2)
+            .enter()
+            .append('text')
+            .attr({
+                'fill': '#FF99AD',
+                'x': function(d) {
+                    return xScale2(d.z) - 21
+                },
+                'y': function(d) {
+                    return (padding + 40 * d.w + 9);
+                }
+            }).text(function(d) {
+                return d.z + "%";
+            }).style({
+                'font-size': '10px',
+                "font-family": "arial",
+                "font-weight": 600
+            });
+
+
+        //chart 3
+
+        var dataSet3 = [{
+                v: "14%",
+                w: 0,
+                x: 2019,
+                y: "Q3",
+                z: 34.72
+            },
+            {
+                v: "16%",
+                w: 1,
+                x: 2019,
+                y: "Q4",
+                z: 43.36
+            },
+            {
+                v: "19%",
+                w: 2,
+                x: 2020,
+                y: "Q1",
+                z: 54.34
+            },
+            {
+                v: "21%",
+                w: 3,
+                x: 2020,
+                y: "Q2",
+                z: 62.79
+            },
+            {
+                v: "22%",
+                w: 4,
+                x: 2020,
+                y: "Q3",
+                z: 70.4
+            }
+        ]
+        
+        //標題
+        
+        d3.select("div.chart3").select("svg")
+            .append("text")
+            .style({
+                "font-size": 20,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 800
+            })
+            .text("Spotify's Podcast Investments Are Paying Off")
+            .attr({
+                x: 160,
+                y: 20
+            })
+
+        d3.select("div.chart3").select("svg")
+            .append("text")
+            .style({
+                "font-size": 13,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 400
+            })
+            .text("Podcast users doubled in a year, hitting 1/5 of Spotify's total monthly active users")
+            .attr({
+                x: 160,
+                y: 40
+            })
+
+        d3.select("div.chart3").select("svg")
+            .append("text")
+            .style({
+                "font-size": 10,
+                "color": "black",
+                "font-family": "arial",
+                "font-weight": 400
+            })
+            .text("Source: Spotify")
+            .attr({
+                x: 160,
+                y: height - padding / 2
+            })
+
+        
+
+        // 畫出y軸
+
+        var yScale3 = d3.scale.linear()
+            .domain([0, 100])
+            .range([height - padding, padding])
+
+        var yAxis3 = d3.svg.axis()
+            .scale(yScale3)
+            .orient("left")
+            .ticks(5);
+
+        d3.select("div.chart3").select("svg")
+            .append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + padding * 2 + "," + 0 + ")")
+            .call(yAxis3)
+            .append("text")
+            .text("monthly active podcast users" + "(" + "M" + ")")
+            .attr("transform", "translate(" + (-padding - 45) + "," + (padding - 15) + ")")
+
+
+        //畫出x軸
+
+        var xPath = [{
+                x: 200,
+                y: 300
+            },
+            {
+                x: 600,
+                y: 300
+            }
+        ]
+
+
+
+        var line3 = d3.svg.line()
+            .x(function(d) {
+                return d.x
+            })
+            .y(function(d) {
+                return d.y
+            })
+
+
+        d3.select("div.chart3").select("svg")
+            .append("path")
+            .attr({
+                d: line3(xPath),
+                fill: "none",
+                stroke: "black",
+                "shape-rendering": "auto",
+            })
+
+
+        var category = d3.select("div.chart3").select("svg").append('g')
+            .attr({
+                'id': 'category'
+            });
+
+        category.selectAll('text')
+            .data(dataSet3)
+            .enter()
+            .append("text")
+            .text(function(d) {
+                return d.x + d.y
+            })
+            .attr({
+                x: function(d) {
+                    return 225 + (80 * d.w)
+                },
+                y: 315
+            })
+            .style({
+                "font-size": 11,
+                fill: "#8D8D8D"
+            })
+
+        //畫出柱狀圖
+
+        var rect = d3.select("div.chart3").select("svg").append('g')
+            .attr({
+                'id': 'rect'
+            });
+
+        rect.selectAll('rect')
+            .data(dataSet3)
+            .enter()
+            .append('rect')
+            .attr({
+                'width': 15,
+                'height': function(d) {
+                    return 400 - yScale3(d.z) - padding
+                },
+                'fill': "#4F767D",
+                'x': function(d) {
+                    return 235 + (80 * d.w)
+                },
+                'y': function(d) {
+                    return yScale3(d.z)
+                }
+            })
+
+            //加上tooltip
+
+            .on("mouseover", function(d) {
+                var chart3_tooltip = d3.select("#chart3_tooltip")
+                    .style({
+                        left: (d3.mouse(this)[0] + 5) + "px",
+                        top: (d3.mouse(this)[1] - 85) + "px"
+
+                    })
+
+                chart3_tooltip.select("#people").text(d.z+" "+"million people").style({
+                        "font-size": "12px",
+                        "font-weight": 600,
+                    })
+
+
+                chart3_tooltip.select("#spotifyPercent").text(d.v + " " + "of Spotify's total active users")
+                    .style({
+                        "font-size": "12px",
+                        "font-weight": 400,
+                    })
+
+
+                d3.select("#chart3_tooltip").classed("hidden", false).on("mouseout", function(d) {
+                    d3.select("#chart3_tooltip").classed("hidden", true)
+                })
+
+            })
+
+    </script>
+
+
+</body>
+
+</html>
