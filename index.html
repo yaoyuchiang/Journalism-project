@@ -19,12 +19,25 @@
 
         div.up {
             display: flex;
-            background-image: url('./background.jpg');
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./background.jpg');
             width: 100wh;
             height: 80vh;
             background-size: cover;
             background-position: center;
             position: relative;
+        }
+
+        .up .up-content {
+            width: 95%;
+            height: 30%;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-60%);
         }
 
 
@@ -41,20 +54,20 @@
             text-align: center;
             align-items: center;
             justify-content: center;
-
+            text-decoration: underline;
+            -webkit-text-decoration-color: #FF99AD;
+            text-decoration-color: #FF99AD;
         }
 
 
-
-
         .up h2 {
-            font-size: 26px;
+            font-size: 16px;
             font-weight: 600;
             margin: auto;
             color: white;
             font-family: 'roboto', sans-serif;
             text-align: center;
-            top: 340px;
+            top: 320px;
             left: 73px;
             position: absolute;
             box-sizing: border-box;
@@ -133,10 +146,18 @@
 
         .img1 {
             height: 300px;
-            /*can be anything*/
             width: 320px;
-            /*can be anything*/
             position: relative;
+            float: left;
+            margin: 0 30px 20px 20px;
+        }
+
+        .img2 {
+            height: 300px;
+            width: 320px;
+            position: relative;
+            float: right;
+            margin: 0 20px 30px 30px;
         }
 
         img {
@@ -159,6 +180,8 @@
             font-weight: 300;
             font-style: italic;
             color: #8D8D8D;
+            position: absolute;
+            bottom: -8px;
         }
 
 
@@ -239,13 +262,14 @@
 </head>
 
 <body>
-
+    <div class="change-pose"></div>
     <div class="main">
         <div class="up">
-            <h1>
-                What’s Behind the New Wave of Podcasts in Taiwan?
-            </h1>
-            <div class="color1">
+            <div class="up-content">
+                <h1>
+                    What’s Behind the New Wave of Podcasts in Taiwan?
+                </h1>
+                <div class="color1"></div>
             </div>
             <h2>
                 Reported / designed by Yao-Yu Chiang
@@ -300,25 +324,27 @@
             <h2>
                 How the media compete to monetize our attention
             </h2>
-            <figure class="img1">
-                <img src="img-1592310282-24461@900.jpg">
-                <figcaption>
-                    As one of the earliest podcasters in Taiwan, Michael Chou believes its decentrilized characteristic will invite big name companies to try to integrate and monopolize the market.
-                </figcaption>
-            </figure>
-            <p>
-                "The major media platforms you see today are really about just one thing: how to monetize your attention," said Chou.
-                In the limited time we have in a day, Netflix takes up an hour or two; YouTube steals 20 or 30 minutes of our time; Facebook and Instagram divide up the rest of our fragmented time; even for moments as short as 15 seconds, there is Tiktok trying to grab your attention.
-                <br><br>
-                At a time when the "attention blocks" of varying lengths of time are being carved up by different media platforms, the battlefield has been shifted toward "secondary attention," eyeing on activities such as jogging, working out, and driving that don't require your full concentration. Podcasts serve as a great medium that caters to these scenarios just right.
-                <br><br>
-                "People have a limited amount of attention within a day, but we keep finding new ways through technology to cut out smaller markets to drain every bit of your attention. I'm guessing that people would continue to subdivide new markets in the future. After all, as human beings, we are always afraid of being bored," said Chou.
-                <br><br>
-                However, it's important to note that the size of the market depends on the amount of attention. Given this circumstance, how the relatively fragmented and scattered podcast market can form a more efficient business model will be a major issue for future podcasters.
-                <br><br>
-                If we look to the west, Spotify, the Swedish music streaming giant, has already been answering this question. It has been doubling down on investing in its podcast business, churning up the once stagnant industry.
-                <br><br>
-            </p>
+            <div>
+                <figure class="img1">
+                    <img src="img-1592310282-24461@900.jpg">
+                    <figcaption>
+                        As one of the earliest podcasters in Taiwan, Michael Chou believes its decentrilized characteristic will invite big name companies to try to integrate and monopolize the market.
+                    </figcaption>
+                </figure>
+                <p>
+                    "The major media platforms you see today are really about just one thing: how to monetize your attention," said Chou.
+                    In the limited time we have in a day, Netflix takes up an hour or two; YouTube steals 20 or 30 minutes of our time; Facebook and Instagram divide up the rest of our fragmented time; even for moments as short as 15 seconds, there is Tiktok trying to grab your attention.
+                    <br><br>
+                    At a time when the "attention blocks" of varying lengths of time are being carved up by different media platforms, the battlefield has been shifted toward "secondary attention," eyeing on activities such as jogging, working out, and driving that don't require your full concentration. Podcasts serve as a great medium that caters to these scenarios just right.
+                    <br><br>
+                    "People have a limited amount of attention within a day, but we keep finding new ways through technology to cut out smaller markets to drain every bit of your attention. I'm guessing that people would continue to subdivide new markets in the future. After all, as human beings, we are always afraid of being bored," said Chou.
+                    <br><br>
+                    However, it's important to note that the size of the market depends on the amount of attention. Given this circumstance, how the relatively fragmented and scattered podcast market can form a more efficient business model will be a major issue for future podcasters.
+                    <br><br>
+                    If we look to the west, Spotify, the Swedish music streaming giant, has already been answering this question. It has been doubling down on investing in its podcast business, churning up the once stagnant industry.
+                    <br><br>
+                </p>
+            </div>
             <h2>
                 Podcasts in America: an undermonetized market
             </h2>
@@ -389,35 +415,35 @@
             <h2>
                 As Taiwan's podcast market takes off, is the era of "sound economy" coming?
             </h2>
-            <figure class="img1">
-                <img src="img-1592106852-16753@900.jpg">
-                <figcaption>
-                    In "Bailingguo," the host Kylie Wang discusses international news in a stand-up comedy fashion. It is now among the top 3 most popular podcasts in Taiwan.
-                </figcaption>
-            </figure>
-            <p>
-                Spotify has shaken up the U.S. podcast industry. If we look back to Taiwan, we can see that although the two markets are hardly comparable in size, local companies with the ambition to integrate the entire podcast market have also emerged.
-                <br><br>
-                In May last year, SoundOn, a podcast company providing hosting systems, streaming platforms, self-produced podcasts, and advertising agency services, was officially founded. Throughout their year-long preparation, they invited several celebrities to produce their own podcasts, launched the first local Mandarin hosting system, and introduced podcasts to potential advertisers from banks to retail chains.
-                <br><br>
-                These acts had helped attract more Taiwanese people's attention to this relatively unfamiliar medium and lowered the entry barrier for new podcasters with the Mandarin hosting system. Meanwhile, as COVID-19 forced people to stay at home since late January, many of them viewed it as a chance to make their own podcasts.
-                <br><br>
-                Cheng Seng Group, Taiwan's largest recording equipment distributor, said that the monthly podcast-related equipment sales had increased 10 times year-on-year in February. Google Trend statistics also showed that searches for the keyword "podcast" in Taiwan went up by about 50% from February to June. Popular podcasts such as "Gooaye" and "Bailingguo" became the new talk of the town, and advertisers have been pouring into this new field.
-                <br><br>
-                "We had zero advertising revenue last year," said Kylie Wang, the host of Bailingguo, "but this year has been phenomenal. We now make more than $1 million NTD every month."
-                <br><br>
-                "We're still about three to five years away from having a mature podcast market like the U.S.," said Likai Gu, founder of SoundOn, "but after this explosive growth, I think we'll catch up with them very quickly."
-                <br><br>
-                Interestingly, while Taiwan's podcast market is blooming, what Michael Chou sees is a starting point for a broader "sound economy."
-                <br><br>
-                "I think the sound is a more primitive form of communication. People are born to listen to sounds, not to read words," said Chou, "sounds are very intuitive. People tend to move towards a direction that's both convenient and intuitive. In the long run, we might see many things shift into a sound-based interface."
-                <br><br>
-                Except for podcasts, innovative applications incorporating sounds have been taking form. In China, the app Zhihu Live offers a voice-based interaction service that allows people to pay and ask a question, and an expert will answer directly to you through voice messages. Voice assistants like Google Home and Alexa have also underlined the increasing importance of voice in future technological development.
-                <br><br>
-                "We love listening to other people speaking. It's so much easier to absorb than texts," said Chou. At a time when we always fixate our eyes on various kinds of screens, maybe the podcast trend will lead us to another digital world that's dominated by sounds. As we grow to rely more on our ears, we might finally give our eyes a break – a break that is long overdue.
-
-
-            </p>
+            <div>
+                <figure class="img2">
+                    <img src="img-1592106852-16753@900.jpg">
+                    <figcaption>
+                        In "Bailingguo," the host Kylie Wang discusses international news in a stand-up comedy fashion. It is now among the top 3 most popular podcasts in Taiwan.
+                    </figcaption>
+                </figure>
+                <p>
+                    Spotify has shaken up the U.S. podcast industry. If we look back to Taiwan, we can see that although the two markets are hardly comparable in size, local companies with the ambition to integrate the entire podcast market have also emerged.
+                    <br><br>
+                    In May last year, SoundOn, a podcast company providing hosting systems, streaming platforms, self-produced podcasts, and advertising agency services, was officially founded. Throughout their year-long preparation, they invited several celebrities to produce their own podcasts, launched the first local Mandarin hosting system, and introduced podcasts to potential advertisers from banks to retail chains.
+                    <br><br>
+                    These acts had helped attract more Taiwanese people's attention to this relatively unfamiliar medium and lowered the entry barrier for new podcasters with the Mandarin hosting system. Meanwhile, as COVID-19 forced people to stay at home since late January, many of them viewed it as a chance to make their own podcasts.
+                    <br><br>
+                    Cheng Seng Group, Taiwan's largest recording equipment distributor, said that the monthly podcast-related equipment sales had increased 10 times year-on-year in February. Google Trend statistics also showed that searches for the keyword "podcast" in Taiwan went up by about 50% from February to June. Popular podcasts such as "Gooaye" and "Bailingguo" became the new talk of the town, and advertisers have been pouring into this new field.
+                    <br><br>
+                    "We had zero advertising revenue last year," said Kylie Wang, the host of Bailingguo, "but this year has been phenomenal. We now make more than $1 million NTD every month."
+                    <br><br>
+                    "We're still about three to five years away from having a mature podcast market like the U.S.," said Likai Gu, founder of SoundOn, "but after this explosive growth, I think we'll catch up with them very quickly."
+                    <br><br>
+                    Interestingly, while Taiwan's podcast market is blooming, what Michael Chou sees is a starting point for a broader "sound economy."
+                    <br><br>
+                    "I think the sound is a more primitive form of communication. People are born to listen to sounds, not to read words," said Chou, "sounds are very intuitive. People tend to move towards a direction that's both convenient and intuitive. In the long run, we might see many things shift into a sound-based interface."
+                    <br><br>
+                    Except for podcasts, innovative applications incorporating sounds have been taking form. In China, the app Zhihu Live offers a voice-based interaction service that allows people to pay and ask a question, and an expert will answer directly to you through voice messages. Voice assistants like Google Home and Alexa have also underlined the increasing importance of voice in future technological development.
+                    <br><br>
+                    "We love listening to other people speaking. It's so much easier to absorb than texts," said Chou. At a time when we always fixate our eyes on various kinds of screens, maybe the podcast trend will lead us to another digital world that's dominated by sounds. As we grow to rely more on our ears, we might finally give our eyes a break – a break that is long overdue.
+                </p>
+            </div>
 
         </div>
 
